@@ -100,14 +100,44 @@ body {
 .gallery .nav {
 	justify-content: center;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-	color: #fff;
-	background-color: #BEB45A;
-	border-radius:0 ;
-}
-.nav-pills .nav-link {
-	color: #000
-}
+/* Conteneur des filtres */
+.tags-bar {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 20px;
+  }
+  
+  /* Style de base pour les filtres */
+  .tags-bar .nav-link {
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #333; /* Couleur de base */
+	border: 2px solid transparent;
+	border-radius: 25px;
+	transition: all 0.3s ease;
+	background-color: #f4f4f4;
+	cursor: pointer;
+  }
+  
+  /* Effet au survol */
+  .tags-bar .nav-link:hover {
+	background-color: #beb45a; /* Couleur de survol */
+	color: white;
+	border-color: #beb45a; /* Contour lors du survol */
+  }
+  
+  /* Filtre actif */
+  .tags-bar .nav-link.active,
+  .tags-bar .nav-link.active-tag {
+	background-color: #beb45a; /* Couleur active */
+	color: white;
+	border-color: #beb45a; /* Contour actif */
+  }
+  
 .item-column {
 	position: relative;
 	margin-bottom: 0 !important;
