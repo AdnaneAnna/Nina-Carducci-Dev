@@ -121,36 +121,43 @@
       }
     },
     openLightBox(element, lightboxId) {
+      const activeTag = $(".tags-bar .active-tag").data("images-toggle");
+      const filteredImages = [];
+
+      // Récupérer les images du filtre actif
+      $(".gallery-item").each(function() {
+        const itemTag = $(this).data("gallery-tag");
+        if (activeTag === "all" || itemTag === activeTag) {
+          filteredImages.push($(this).attr("src"));
+        }
+      });
+
+      // Ajouter les images filtrées au data pour navigation
+      $(`#${lightboxId}`).data("filteredImages", filteredImages);
+
+      // Afficher l'image sélectionnée
       $(`#${lightboxId}`)
         .find(".lightboxImage")
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
     prevImage(lightboxId) {
-      let activeImage = $(`#${lightboxId}`).find(".lightboxImage").attr("src");
-      let imagesCollection = [];
+      const filteredImages = $(`#${lightboxId}`).data("filteredImages");
+      const activeImage = $(`#${lightboxId}`).find(".lightboxImage").attr("src");
 
-      $(".gallery-item").each(function() {
-        imagesCollection.push($(this).attr("src"));
-      });
+      const currentIndex = filteredImages.indexOf(activeImage);
+      const prevIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
 
-      let currentIndex = imagesCollection.indexOf(activeImage);
-      let prevIndex = (currentIndex - 1 + imagesCollection.length) % imagesCollection.length;
-
-      $(`#${lightboxId}`).find(".lightboxImage").attr("src", imagesCollection[prevIndex]);
+      $(`#${lightboxId}`).find(".lightboxImage").attr("src", filteredImages[prevIndex]);
     },
     nextImage(lightboxId) {
-      let activeImage = $(`#${lightboxId}`).find(".lightboxImage").attr("src");
-      let imagesCollection = [];
+      const filteredImages = $(`#${lightboxId}`).data("filteredImages");
+      const activeImage = $(`#${lightboxId}`).find(".lightboxImage").attr("src");
 
-      $(".gallery-item").each(function() {
-        imagesCollection.push($(this).attr("src"));
-      });
+      const currentIndex = filteredImages.indexOf(activeImage);
+      const nextIndex = (currentIndex + 1) % filteredImages.length;
 
-      let currentIndex = imagesCollection.indexOf(activeImage);
-      let nextIndex = (currentIndex + 1) % imagesCollection.length;
-
-      $(`#${lightboxId}`).find(".lightboxImage").attr("src", imagesCollection[nextIndex]);
+      $(`#${lightboxId}`).find(".lightboxImage").attr("src", filteredImages[nextIndex]);
     },
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${lightboxId}" tabindex="-1" role="dialog" aria-hidden="true">

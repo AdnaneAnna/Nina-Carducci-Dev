@@ -107,37 +107,44 @@ body {
 	flex-wrap: wrap;
 	gap: 10px;
 	margin-bottom: 20px;
-  }
-  
-  /* Style de base pour les filtres */
-  .tags-bar .nav-link {
+}
+
+/* Style de base pour les filtres */
+.tags-bar .nav-link {
 	padding: 10px 15px;
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
-	color: #333; /* Couleur de base */
+	color: #333; /* Couleur de base (gris foncé pour le contraste) */
 	border: 2px solid transparent;
 	border-radius: 25px;
 	transition: all 0.3s ease;
-	background-color: #f4f4f4;
+	background-color: #f4f4f4; /* Couleur de fond claire */
 	cursor: pointer;
-  }
-  
-  /* Effet au survol */
-  .tags-bar .nav-link:hover {
-	background-color: #beb45a; /* Couleur de survol */
-	color: white;
-	border-color: #beb45a; /* Contour lors du survol */
-  }
-  
-  /* Filtre actif */
-  .tags-bar .nav-link.active,
-  .tags-bar .nav-link.active-tag {
-	background-color: #beb45a; /* Couleur active */
-	color: white;
-	border-color: #beb45a; /* Contour actif */
-  }
-  
+}
+
+/* Effet au survol */
+.tags-bar .nav-link:hover {
+	background-color: #867a30; /* Couleur de survol améliorée pour contraste */
+	color: white; /* Texte blanc pour contraste suffisant */
+	border-color: #867a30; /* Contour lors du survol */
+}
+
+/* Filtre actif */
+.tags-bar .nav-link.active,
+.tags-bar .nav-link.active-tag {
+	background-color: #6c5e1b; /* Couleur active plus foncée pour contraste optimal */
+	color: white; /* Texte blanc */
+	border-color: #6c5e1b; /* Contour actif */
+}
+
+/* Ajustement pour focus clavier (accessibilité supplémentaire) */
+.tags-bar .nav-link:focus {
+	outline: 3px solid #ffcc00; /* Anneau de focus visible (contraste élevé) */
+	background-color: #867a30; /* Fond au focus */
+	color: white; /* Texte blanc */
+}
+
 .item-column {
 	position: relative;
 	margin-bottom: 0 !important;
@@ -273,6 +280,23 @@ input[type="submit"] {
 	background-color: #BEB45A;
 	padding: .5em 1em
 }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.nav a:hover {
+    color: #f00;
+    transition: color 0.3s ease-in-out;
+}
+
 
 @media all and (max-width: 1180px) {
 	.picture {
